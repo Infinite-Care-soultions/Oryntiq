@@ -128,8 +128,14 @@ ul {
 	flex-shrink: 0;
 }
 
+.brand img,
+.footer-brand img {
+	/* Soften JPEG navy matte (#091124) into page navy backgrounds */
+	mix-blend-mode: lighten;
+}
+
 .brand img {
-	height: 44px;
+	height: 54px;
 	width: auto;
 }
 
@@ -265,9 +271,9 @@ ul {
 }
 
 .hero-brand img {
-	height: clamp(72px, 12vw, 96px);
+	/* logo-hero.png has the JPEG navy matte keyed to transparency */
+	height: clamp(86px, 14vw, 116px);
 	width: auto;
-	filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.35));
 }
 
 .hero h1 {
@@ -401,11 +407,12 @@ ul {
 	content: "";
 	position: absolute;
 	inset: 0;
-	background-image: url("/assets/oryntiq/images/logo-mark.png");
+	background-image: url("/assets/oryntiq/images/logo.jpeg");
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: 62%;
-	opacity: 0.35;
+	background-size: cover;
+	opacity: 0.5;
+	mix-blend-mode: soft-light;
 }
 
 .split-visual::after {
@@ -766,6 +773,148 @@ ul {
 	text-decoration: underline;
 }
 
+/* ——— Privacy & Terms ——— */
+.privacy,
+.terms {
+	background:
+		radial-gradient(ellipse 60% 50% at 50% 0%, rgba(43, 184, 214, 0.12), transparent 55%),
+		linear-gradient(160deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-mid) 100%);
+	color: var(--white);
+	text-align: center;
+}
+
+.privacy-inner,
+.terms-inner {
+	max-width: 720px;
+}
+
+.privacy-header,
+.terms-header {
+	margin-bottom: 2.25rem;
+}
+
+.privacy .section-title,
+.terms .section-title {
+	color: var(--white);
+	max-width: none;
+	margin-inline: auto;
+}
+
+.privacy-rule,
+.terms-rule {
+	margin: 1.25rem auto 0;
+	width: 72px;
+	height: 3px;
+	border: 0;
+}
+
+.privacy-rule {
+	background: linear-gradient(90deg, var(--gold), var(--orange) 45%, var(--cyan));
+}
+
+.terms-rule {
+	background: linear-gradient(90deg, var(--orange) 50%, var(--cyan) 50%);
+}
+
+.privacy-subtitle,
+.terms-subtitle {
+	margin-top: 1rem;
+	font-size: 1rem;
+	color: rgba(255, 255, 255, 0.65);
+}
+
+.privacy-card,
+.terms-card {
+	padding: clamp(1.75rem, 4vw, 2.5rem);
+	background: rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	border-radius: 24px;
+	text-align: left;
+}
+
+.privacy-intro,
+.terms-intro {
+	font-family: var(--font-display);
+	font-size: clamp(1.05rem, 2vw, 1.2rem);
+	font-weight: 600;
+	line-height: 1.45;
+	color: var(--white);
+	margin-bottom: 1.75rem;
+	padding-bottom: 1.35rem;
+	border-bottom: 1px solid rgba(207, 172, 48, 0.35);
+}
+
+.privacy-list,
+.terms-list {
+	display: grid;
+	gap: 1.35rem;
+	list-style: none;
+}
+
+.privacy-list {
+	counter-reset: privacy-item;
+}
+
+.terms-list {
+	counter-reset: terms-item;
+}
+
+.privacy-list li,
+.terms-list li {
+	display: grid;
+	gap: 0.35rem;
+	padding-left: 2.75rem;
+	position: relative;
+}
+
+.privacy-list li {
+	counter-increment: privacy-item;
+}
+
+.terms-list li {
+	counter-increment: terms-item;
+}
+
+.privacy-list li::before,
+.terms-list li::before {
+	position: absolute;
+	left: 0;
+	top: 0.1rem;
+	width: 1.85rem;
+	height: 1.85rem;
+	display: grid;
+	place-items: center;
+	border-radius: 50%;
+	font-family: var(--font-display);
+	font-size: 0.85rem;
+	font-weight: 700;
+	color: var(--navy-deep);
+	background: linear-gradient(135deg, var(--gold), var(--orange));
+}
+
+.privacy-list li::before {
+	content: counter(privacy-item);
+}
+
+.terms-list li::before {
+	content: counter(terms-item);
+}
+
+.privacy-list h3,
+.terms-list h3 {
+	font-family: var(--font-display);
+	font-size: 1.1rem;
+	font-weight: 700;
+	color: var(--gold-soft);
+}
+
+.privacy-list p,
+.terms-list p {
+	font-size: 0.98rem;
+	color: rgba(255, 255, 255, 0.72);
+	line-height: 1.6;
+}
+
 /* ——— Footer ——— */
 .site-footer {
 	background: var(--navy-deep);
@@ -792,7 +941,7 @@ ul {
 }
 
 .footer-brand img {
-	height: 64px;
+	height: 78px;
 	width: auto;
 	margin-bottom: 1rem;
 }
